@@ -1,12 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BlogController;
+
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LemariController;
 use App\Http\Controllers\PeminjamanController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -27,6 +26,7 @@ Route::middleware('guest')->group(function () {
 
 Route::get('/landing', [LandingController::class, 'index'])->name('landing');
 Route::middleware('auth')->group(function () {
+    
     Route::get('/lemari', [LemariController::class, 'index'])->name('crud.index');
     Route::post('/logout',  [AuthController::class, 'logout'])->name('logout');
     Route::delete('/peminjaman/{id}', [PeminjamanController::class, 'destroy'])->name('peminjaman.destroy');
