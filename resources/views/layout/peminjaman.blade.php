@@ -76,7 +76,7 @@
                     <ul>
                         <li><a href="{{ route('crud.index') }}">Beranda</a></li>
                         <li><a href="about.html" class="active">Status Pinjam</a></li>
-                        <li><a href="blog-details.html">Blog Details</a></li>
+                        <li><a href="{{ route('berita.index') }}">Blog Details</a></li>
                         <li>
                             <a href="#"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

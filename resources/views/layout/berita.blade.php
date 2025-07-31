@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Index - Blogy Bootstrap Template</title>
+    <title>About - Blogy Bootstrap Template</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
+    <!-- Favicons -->
     <!-- Favicon -->
     <link href="{{ asset('blog/assets/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('blog/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
@@ -18,9 +19,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('blog/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -32,6 +32,9 @@
     <!-- Main CSS File -->
     <link href="{{ asset('blog/assets/css/main.css') }}" rel="stylesheet">
 
+    
+
+
     <!-- =======================================================
   * Template Name: Blogy
   * Template URL: https://bootstrapmade.com/blogy-bootstrap-blog-template/
@@ -41,7 +44,7 @@
   ======================================================== -->
 </head>
 
-<body class="index-page">
+<body class="about-page">
 
     <header id="header" class="header position-relative">
         <div class="container-fluid container-xl position-relative">
@@ -49,7 +52,7 @@
             <div class="top-row d-flex align-items-center justify-content-between">
                 <a href="index.html" class="logo d-flex align-items-end">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
-                    <!-- <img src="{{ asset('blog/') }}assets/img/logo.webp" alt=""> -->
+                    <!-- <img src="assets/img/logo.webp" alt=""> -->
                     <h1 class="sitename">Blogy</h1><span>.</span>
                 </a>
 
@@ -73,9 +76,9 @@
             <div class="container d-flex justify-content-center position-relative">
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><a href="index.html" class="active">Beranda</a></li>
-                        <li><a href="{{ route('peminjaman.index') }}">Status Pinjam</a></li>
-                        <li><a href="{{ route('berita.index') }}">Blog Details</a></li>
+                        <li><a href="{{ route('crud.index') }}">Beranda</a></li>
+                        <li><a href="{{ Route('peminjaman.index') }}" >Status Pinjam</a></li>
+                        <li><a href="blog-details.html" class="active">Blog Details</a></li>
                         <li>
                             <a href="#"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -88,7 +91,8 @@
                             </form>
                         </li>
 
-                        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                    </ul>
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
             </div>
         </div>
@@ -96,117 +100,7 @@
     </header>
 
     <main class="main">
-
-        <!-- Blog Hero Section -->
-        <section id="blog-hero" class="blog-hero section">
-
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="blog-grid">
-
-                    <!-- Featured Post (Large) -->
-                    <article class="blog-item featured" data-aos="fade-up">
-                        <img src="{{ asset('blog/assets/img/blog/blog-post-3.webp') }}" alt="Blog Image"
-                            class="img-fluid">
-                        <div class="blog-content">
-                            <div class="post-meta">
-                                <span class="date">Apr. 14th, 2025</span>
-                                <span class="category">Technology</span>
-                            </div>
-                            <h2 class="post-title">
-                                <a href="blog-details.html"
-                                    title="Lorem ipsum dolor sit amet, consectetur adipiscing elit">Lorem ipsum dolor
-                                    sit amet, consectetur adipiscing elit</a>
-                            </h2>
-                        </div>
-                    </article><!-- End Featured Post -->
-
-                    <!-- Regular Posts -->
-                    <article class="blog-item" data-aos="fade-up" data-aos-delay="100">
-                        <img src="{{ asset('blog/assets/img/blog/blog-post-portrait-1.webp') }}" alt="Blog Image"
-                            class="img-fluid">
-                        <div class="blog-content">
-                            <div class="post-meta">
-                                <span class="date">Apr. 14th, 2025</span>
-                                <span class="category">Security</span>
-                            </div>
-                            <h3 class="post-title">
-                                <a href="blog-details.html" title="Sed do eiusmod tempor incididunt ut labore">Sed do
-                                    eiusmod tempor incididunt ut labore</a>
-                            </h3>
-                        </div>
-                    </article><!-- End Blog Item -->
-
-                    <article class="blog-item" data-aos="fade-up" data-aos-delay="200">
-                        <img src="{{ asset('blog/assets/img/blog/blog-post-9.webp') }}" alt="Blog Image"
-                            class="img-fluid">
-                        <div class="blog-content">
-                            <div class="post-meta">
-                                <span class="date">Apr. 14th, 2025</span>
-                                <span class="category">Career</span>
-                            </div>
-                            <h3 class="post-title">
-                                <a href="blog-details.html"
-                                    title="Ut enim ad minim veniam, quis nostrud exercitation">Ut enim ad minim veniam,
-                                    quis nostrud exercitation</a>
-                            </h3>
-                        </div>
-                    </article><!-- End Blog Item -->
-
-                    <article class="blog-item" data-aos="fade-up" data-aos-delay="300">
-                        <img src="{{ asset('blog/assets/img/blog/blog-post-7.webp') }}" alt="Blog Image"
-                            class="img-fluid">
-                        <div class="blog-content">
-                            <div class="post-meta">
-                                <span class="date">Apr. 14th, 2025</span>
-                                <span class="category">Cloud</span>
-                            </div>
-                            <h3 class="post-title">
-                                <a href="blog-details.html"
-                                    title="Adipiscing elit, sed do eiusmod tempor incididunt">Adipiscing elit, sed do
-                                    eiusmod tempor incididunt</a>
-                            </h3>
-                        </div>
-                    </article><!-- End Blog Item -->
-
-                    <article class="blog-item" data-aos="fade-up" data-aos-delay="400">
-                        <img src="{{ asset('blog/assets/img/blog/blog-post-6.webp') }}" alt="Blog Image"
-                            class="img-fluid">
-                        <div class="blog-content">
-                            <div class="post-meta">
-                                <span class="date">Apr. 14th, 2025</span>
-                                <span class="category">Programming</span>
-                            </div>
-                            <h3 class="post-title">
-                                <a href="blog-details.html"
-                                    title="Excepteur sint occaecat cupidatat non proident">Excepteur sint occaecat
-                                    cupidatat non proident</a>
-                            </h3>
-                        </div>
-                    </article><!-- End Blog Item -->
-
-                </div>
-
-            </div>
-
-        </section><!-- /Blog Hero Section -->
-
-        <!-- Featured Posts Section -->
-        <section id="featured-posts" class="featured-posts section">
-
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Featured Posts</h2>
-                <div><span>Check Our</span> <span class="description-title">Featured Posts</span></div>
-            </div><!-- End Section Title -->
-
-            @yield('content')
-
-        </section><!-- /Featured Posts Section -->
-
-        <!-- Category Section Section -->
-
-
+        @yield('content')
     </main>
 
     <footer id="footer" class="footer">
@@ -310,7 +204,6 @@
 
     <!-- Main JS File -->
     <script src="{{ asset('blog/assets/js/main.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
 
 </body>

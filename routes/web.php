@@ -2,14 +2,12 @@
 
 use App\Http\Controllers\AuthController;
 
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LemariController;
 use App\Http\Controllers\PeminjamanController;
 use Illuminate\Support\Facades\Route;
-
-
-
 
 
 
@@ -24,6 +22,7 @@ Route::middleware('guest')->group(function () {
 });
 // ...
 
+
 Route::get('/landing', [LandingController::class, 'index'])->name('landing');
 Route::middleware('auth')->group(function () {
     
@@ -35,8 +34,10 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:user')->group(function () {
         Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
+        Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
         Route::get('/peminjaman/create/{lemari_id}', [PeminjamanController::class, 'create'])->name('peminjaman.create');
         Route::post('/peminjaman', [PeminjamanController::class, 'store'])->name('peminjaman.store');
+    
     });
 
     Route::middleware('role:admin')->group(function () {
