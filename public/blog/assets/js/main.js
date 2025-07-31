@@ -121,6 +121,23 @@
     });
   }
 
+  document.addEventListener("DOMContentLoaded", function () {
+  const sidebar = document.getElementById("menu");
+  const toggleBtn = document.getElementById("sidebarToggle");
+
+  toggleBtn.addEventListener("click", function () {
+    sidebar.classList.toggle("menu-active");
+
+    // Ambil closeBtn setelah sidebar muncul
+    const closeBtn = document.getElementById("closeSidebar");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", function () {
+        sidebar.classList.remove("menu-active");
+      });
+    }
+  });
+});
+
   window.addEventListener("load", initSwiper);
 
   /**

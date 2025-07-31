@@ -25,7 +25,9 @@ Route::middleware('guest')->group(function () {
 
 Route::get('/landing', [LandingController::class, 'index'])->name('landing');
 Route::middleware('auth')->group(function () {
-    
+
+     Route::get('/profil', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profil', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::get('/lemari', [LemariController::class, 'index'])->name('crud.index');
     Route::post('/logout',  [AuthController::class, 'logout'])->name('logout');
     Route::delete('/peminjaman/{id}', [PeminjamanController::class, 'destroy'])->name('peminjaman.destroy');

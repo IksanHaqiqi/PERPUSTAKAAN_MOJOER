@@ -41,9 +41,9 @@ class ChartController extends Controller
     {
         return [
             'total_books' => Lemari::sum('stock'),
-            'active_borrows' => Peminjaman::where('status', 'dipinjam')->count(),
-            'returned_books' => Peminjaman::where('status', 'dikembalikan')->count(),
-            'overdue_books' => Peminjaman::where('status', 'terlambat')->count()
+            'active_borrows' => Peminjaman::where('status', 'menunggu')->count(),
+            'returned_books' => Peminjaman::where('status', 'disetujui')->count(),
+            'overdue_books' => Peminjaman::where('status', 'ditolak')->count()
         ];
     }
 

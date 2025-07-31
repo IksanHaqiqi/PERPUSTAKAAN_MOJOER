@@ -33,7 +33,7 @@
                         <article class="article">
 
                             <div class="hero-img" data-aos="zoom-in">
-                                <img src="assets/img/blog/blog-post-3.webp" alt="Featured blog image" class="img-fluid"
+                                <img src="{{ asset('blog/assets/img/blog/blog-post-square-1.webp') }}" alt="Featured blog image" class="img-fluid"
                                     loading="lazy">
                                 <div class="meta-overlay">
                                     <div class="meta-categories">
@@ -51,7 +51,7 @@
 
                                     <div class="author-info">
                                         <div class="author-details">
-                                            <img src="assets/img/person/person-f-8.webp" alt="Author" class="author-img">
+                                            <img src="{{ asset('blog/assets/img/blog/blog-post-square-1.webp') }}" alt="Author" class="author-img">
                                             <div class="info">
                                                 <h4>Michael Chen</h4>
                                                 <span class="role">Senior Web Developer</span>
@@ -80,7 +80,7 @@
                                     </p>
 
                                     <div class="content-image right-aligned">
-                                        <img src="assets/img/blog/blog-hero-2.webp" class="img-fluid"
+                                        <img src="{{ asset('blog/assets/img/blog/blog-post-square-1.webp') }}" class="img-fluid"
                                             alt="Modern web development tools" loading="lazy">
                                         <figcaption>Modern development environments emphasize collaboration and efficiency
                                         </figcaption>
@@ -196,7 +196,7 @@
                         <h3 class="widget-title">Recent Posts</h3>
 
                         <div class="post-item">
-                            <img src="assets/img/blog/blog-post-square-1.webp" alt="" class="flex-shrink-0">
+                            <img src="{{ asset('blog/assets/img/blog/blog-post-square-1.webp') }}" alt="" class="flex-shrink-0">
                             <div>
                                 <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
                                 <time datetime="2020-01-01">Jan 1, 2020</time>

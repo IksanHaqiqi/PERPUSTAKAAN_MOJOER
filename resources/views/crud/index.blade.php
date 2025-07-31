@@ -249,7 +249,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid px-4 py-3">
+    <div class="container-fluid container-xl px-4 py-3">
         <!-- Add Book Button for Admin -->
         @if (Auth::user()->isAdmin())
             <div class="text-end mb-2 ">
