@@ -102,6 +102,19 @@
                             <li class="nav-item">
                                 <a href="{{ route('profile.edit') }}" class="nav-link ">Pengaturan Profil</a>
                             </li>
+                            <li>
+                            <a href="#"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Log Out
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+
+
                         </ul>
                     </div>
 
@@ -115,17 +128,7 @@
                             <li><a href="{{ route('crud.index') }}">Beranda</a></li>
                             <li><a href="#" class="active">Status Pinjam</a></li>
                             <li><a href="{{ route('berita.index') }}">Blog Details</a></li>
-                            <li>
-                                <a href="#"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Log Out
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    style="display: none;">
-                                    @csrf
-                                </form>
-                            </li>
+                            
 
                             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                     </nav>
