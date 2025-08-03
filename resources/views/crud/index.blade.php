@@ -267,7 +267,7 @@
                         <div class="card-image-wrapper">
                             <div class="position-relative">
                                 @if ($lemari->image)
-                                    <img src="{{ asset('storage/' . $lemari->image) }}" 
+                                    <img src="{{ asset('storage/images/' . $lemari->image) }}" 
                                          class="card-img-top" 
                                          style="height: 200px; object-fit: cover; width: 100%;" 
                                          alt="{{ $lemari->judul }}">

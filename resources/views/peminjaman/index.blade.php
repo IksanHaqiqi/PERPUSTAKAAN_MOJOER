@@ -7,7 +7,7 @@
 
     <div class="page-content-wrapper">
         <div class="main-content">
-            <div class="container-fluid py-4">
+            <div class="container-fluid container x-1 py-4">
                 <div class="row">
                     <div class="col-12">
                         <div class="card mb-4">
@@ -155,7 +155,7 @@
                                                     <td>{{ $pinjam->lemari->judul }}</td>
                                                     <td>
                                                         @if ($pinjam->lemari->image)
-                                                            <img src="{{ asset('storage/' . $pinjam->lemari->image) }}"
+                                                            <img src="{{ asset('storage/images/' . $pinjam->lemari->image) }}"
                                                                 width="60" class="rounded" alt>
                                                         @else
                                                             <span class="badge bg-secondary">No Image</span>

@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         UserSeeder::class,
         LemariSeeder::class,
         BukuSeeder::class,
+        BeritaSeeder::class,
     ]);
 }
 }

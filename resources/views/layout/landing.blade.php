@@ -103,9 +103,9 @@
                         <div class="col-lg-4 col-md-6 " data-aos="fade-up" data-aos-delay="100">
                             <div class="related-book-card">
                                 <div class="book-image">
-                                    <img src="{{ asset('storage/' . $lemari->image) }}" alt="Book Cover"
+                                    <img src="{{ asset('storage/images/' . $lemari->image) }}" alt="Book Cover"
                                         class="img-fluid">
-                                    <div class="book-category">Science Fiction</div>
+                                    <div class="book-category">{{ $lemari->kategori }}</div>
                                 </div>
                                 <div class="book-info">
                                     <h3 class="card-title">{{ $lemari->judul }}</h3>
