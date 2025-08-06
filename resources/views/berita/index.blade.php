@@ -68,8 +68,8 @@
                 {{-- Jika ada berita yang dipilih --}}
                 @if ($highlightBerita)
                     <div class="highlight-berita mb-4">
-                        <h2>{{ $highlightBerita->judul }}</h2>
                         <img src="{{ asset('storage/images/' . $highlightBerita->gambar) }}" class="img-fluid rounded mb-3" alt="{{ $highlightBerita->judul }}">
+                        <h2>{{ $highlightBerita->judul }}</h2>
                         <p>{!! nl2br(e($highlightBerita->isi)) !!}</p>
                         <small class="text-muted">Dipublish: {{ $highlightBerita->tanggal_publish->format('d M Y') }}</small>
                     </div>

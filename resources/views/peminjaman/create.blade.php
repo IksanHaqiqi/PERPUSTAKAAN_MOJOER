@@ -86,7 +86,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-4 d-flex align-items-center justify-content-center">
                             <div class="cta-book-image">
-                                <img src="{{ asset('storage/' . $lemari->image) }}" alt="Gambar Buku"
+                                <img src="{{ asset('storage/images/' . $lemari->image) }}" alt="Gambar Buku"
                                     class="img-fluid rounded shadow-sm"
                                     style="max-width: 200px; max-height: 300px; object-fit: cover;">
                             </div>
