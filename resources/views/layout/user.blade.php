@@ -90,7 +90,7 @@
                             <img src="{{ asset('storage/profile/' . auth()->user()->image) }}"
                                 class="rounded-circle mb-2" alt="Foto Profil" width="80" height="80">
                         @else
-                            <img src="{{ asset('default-avatar.png') }}" class="rounded-circle mb-2" alt="Default Foto"
+                            <img src="{{ asset('profile.jpg') }}" class="rounded-circle mb-2" alt="Default Foto"
                                 width="80" height="80">
                         @endif
 
