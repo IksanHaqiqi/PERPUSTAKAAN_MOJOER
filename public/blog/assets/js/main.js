@@ -121,21 +121,22 @@
     });
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
   const sidebar = document.getElementById("menu");
   const toggleBtn = document.getElementById("sidebarToggle");
+  const closeBtn = document.getElementById("closeSidebar");
 
+  // Toggle sidebar saat tombol toggle diklik
   toggleBtn.addEventListener("click", function () {
     sidebar.classList.toggle("menu-active");
-
-    // Ambil closeBtn setelah sidebar muncul
-    const closeBtn = document.getElementById("closeSidebar");
-    if (closeBtn) {
-      closeBtn.addEventListener("click", function () {
-        sidebar.classList.remove("menu-active");
-      });
-    }
   });
+
+  // Tutup sidebar saat tombol close diklik
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function () {
+      sidebar.classList.remove("menu-active");
+    });
+  }
 });
 
   window.addEventListener("load", initSwiper);
@@ -153,3 +154,4 @@
   });
 
 })();
+

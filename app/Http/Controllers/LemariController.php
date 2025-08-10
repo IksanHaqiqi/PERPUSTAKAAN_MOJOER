@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Lemari;
 use Illuminate\Support\Facades\Storage;
 use function view;
+use App\Models\Berita;
 
 class LemariController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
 
         $layout = 'layout.landing';
@@ -22,7 +23,19 @@ class LemariController extends Controller
             }
         }
         $lemaris = Lemari::all();
-        return view('crud.index', compact('lemaris','layout'));
+                $beritas = Berita::latest('tanggal_publish')->get();
+
+        // Ambil 5 berita terbaru untuk recent posts
+        $recentPosts = Berita::latest('tanggal_publish')->take(5)->get();
+
+        // Jika ada parameter highlight, cari berita yang di-highlight
+        $highlightBerita = null;
+        if ($request->has('highlight')) {
+            $highlightBerita = Berita::find($request->highlight);
+        }
+
+
+        return view('crud.index', compact('lemaris','layout','recentPosts', 'highlightBerita'));
     }
 
     public function create()

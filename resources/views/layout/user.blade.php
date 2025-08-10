@@ -82,7 +82,7 @@
                 </div>
 
                 <!-- Sidebar Menu di Kanan -->
-                <div id="menu" class="menu collapsed-menu">
+                <div id="menu" class="menu menu-active">
                     <button id="closeSidebar" class="btn-close" aria-label="Close"></button>
                     <div class="p-3 text-center">
                         <!-- FOTO PROFIL -->
@@ -105,18 +105,19 @@
                                 <a href="{{ route('profile.edit') }}" class="nav-link ">Pengaturan Profil</a>
                             </li>
                             <li>
-                            <a href="#"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Log Out
-                            </a>
+                                <a href="#"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Log Out
+                                </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                style="display: none;">
-                                @csrf
-                            </form>
-                        </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
                         </ul>
                     </div>
+
                 </div>
 
             </div>
@@ -128,7 +129,7 @@
                         <li><a href="index.html" class="active">Beranda</a></li>
                         <li><a href="{{ route('peminjaman.index') }}">Status Pinjam</a></li>
                         <li><a href="{{ route('berita.index') }}">Blog Details</a></li>
-                    
+
 
                         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
@@ -147,85 +148,44 @@
                 <div class="blog-grid">
 
                     <!-- Featured Post (Large) -->
-                    <article class="blog-item featured" data-aos="fade-up">
-                        <img src="{{ asset('blog/assets/img/blog/blog-post-3.webp') }}" alt="Blog Image"
-                            class="img-fluid">
-                        <div class="blog-content">
-                            <div class="post-meta">
-                                <span class="date">Apr. 14th, 2025</span>
-                                <span class="category">Technology</span>
-                            </div>
-                            <h2 class="post-title">
-                                <a href="blog-details.html"
-                                    title="Lorem ipsum dolor sit amet, consectetur adipiscing elit">Lorem ipsum dolor
-                                    sit amet, consectetur adipiscing elit</a>
-                            </h2>
-                        </div>
-                    </article><!-- End Featured Post -->
+                    @foreach ($recentPosts as $index => $post)
+                        @if ($index == 0)
+                            <article class="blog-item featured" data-aos="fade-up">
+                                <img src="{{ asset('storage/images/' . $post->gambar) }}" alt="Blog Image"
+                                    class="img-fluid">
+                                <div class="blog-content">
+                                    <div class="post-meta">
+                                        <span class="date">{{ $post->tanggal_publish->format('M. d, Y') }}</span>
 
-                    <!-- Regular Posts -->
-                    <article class="blog-item" data-aos="fade-up" data-aos-delay="100">
-                        <img src="{{ asset('blog/assets/img/blog/blog-post-portrait-1.webp') }}" alt="Blog Image"
-                            class="img-fluid">
-                        <div class="blog-content">
-                            <div class="post-meta">
-                                <span class="date">Apr. 14th, 2025</span>
-                                <span class="category">Security</span>
-                            </div>
-                            <h3 class="post-title">
-                                <a href="blog-details.html" title="Sed do eiusmod tempor incididunt ut labore">Sed do
-                                    eiusmod tempor incididunt ut labore</a>
-                            </h3>
-                        </div>
-                    </article><!-- End Blog Item -->
+                                        <!-- Kalau ada kategori, bisa diganti -->
+                                    </div>
+                                    <h2 class="post-title">
+                                        <a href="{{ route('berita.index', ['highlight' => $post->id]) }}"
+                                            title="{{ $post->judul }}">
+                                            {{ $post->judul }}
+                                        </a>
+                                    </h2>
+                                </div>
+                            </article><!-- End Featured Post -->
+                        @else
+                            <article class="blog-item" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
+                                <img src="{{ asset('storage/images/' . $post->gambar) }}" alt="Blog Image"
+                                    class="img-fluid">
+                                <div class="blog-content">
+                                    <div class="post-meta">
+                                        <span class="date">{{ $post->tanggal_publish->format('M. d, Y') }}</span>
 
-                    <article class="blog-item" data-aos="fade-up" data-aos-delay="200">
-                        <img src="{{ asset('blog/assets/img/blog/blog-post-9.webp') }}" alt="Blog Image"
-                            class="img-fluid">
-                        <div class="blog-content">
-                            <div class="post-meta">
-                                <span class="date">Apr. 14th, 2025</span>
-                                <span class="category">Career</span>
-                            </div>
-                            <h3 class="post-title">
-                                <a href="blog-details.html"
-                                    title="Ut enim ad minim veniam, quis nostrud exercitation">Ut enim ad minim veniam,
-                                    quis nostrud exercitation</a>
-                            </h3>
-                        </div>
-                    </article><!-- End Blog Item -->
-
-                    <article class="blog-item" data-aos="fade-up" data-aos-delay="300">
-                        <img src="{{ asset('blog/assets/img/blog/blog-post-7.webp') }}" alt="Blog Image"
-                            class="img-fluid">
-                        <div class="blog-content">
-                            <div class="post-meta">
-                                <span class="date">Apr. 14th, 2025</span>
-                                <span class="category">Cloud</span>
-                            </div>
-                            <h3 class="post-title">
-                                <a href="blog-details.html"
-                                    title="Adipiscing elit, sed do eiusmod tempor incididunt">Adipiscing elit, sed do
-                                    eiusmod tempor incididunt</a>
-                            </h3>
-                        </div>
-                    </article><!-- End Blog Item -->
-
-                    <article class="blog-item" data-aos="fade-up" data-aos-delay="400">
-                        <img src="{{ asset('blog/assets/img/blog/blog-post-6.webp') }}" alt="Blog Image"
-                            class="img-fluid">
-                        <div class="blog-content">
-                            <div class="post-meta">
-                                <span class="date">Apr. 14th, 2025</span>
-                                <span class="category">Programming</span>
-                            </div>
-                            <h3 class="post-title">
-                                <a href="blog-details.html"
-                                    title="Excepteur sint occaecat cupidatat non proident">Excepteur sint occaecat
-                                    cupidatat non proident</a>
-                            </h3>
-                        </div>
-                    </article><!-- End Blog Item -->
+                                    </div>
+                                    <h3 class="post-title">
+                                        <a href="{{ route('berita.index', ['highlight' => $post->id]) }}"
+                                            title="{{ $post->judul }}">
+                                            {{ $post->judul }}
+                                        </a>
+                                    </h3>
+                                </div>
+                            </article><!-- End Blog Item -->
+                        @endif
+                    @endforeach
 
                 </div>
 
@@ -355,6 +315,7 @@
     <script src="{{ asset('blog/assets/js/main.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
+  
 
 </body>
 

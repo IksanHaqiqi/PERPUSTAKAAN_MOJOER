@@ -96,14 +96,6 @@ class BeritaController extends Controller
         return redirect()->route('berita.status')->with('success', 'Berita berhasil dihapus.');
     }
 
-    public function show($slug)
-{
-    $berita = Berita::where('slug', $slug)->firstOrFail();
 
-    // Tambah 1 views
-    $berita->increment('views');
-
-    return view('berita.show', compact('berita'));
-}
 
 }
