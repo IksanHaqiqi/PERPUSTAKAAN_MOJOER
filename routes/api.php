@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
-
-// LOGIN
+// =====================
+// LOGIN API (Token-based)
+// =====================
 Route::post('/login', function (Request $request) {
     $user = User::where('email', $request->email)->first();
 
@@ -25,9 +26,12 @@ Route::post('/login', function (Request $request) {
     ]);
 });
 
-// PROTECTED ROUTES - HARUS LOGIN
-// Logout
+// =====================
+// ROUTE PROTECTED (HARUS LOGIN)
+// =====================
 Route::middleware('auth:sanctum')->group(function () {
+
+    // Logout
     Route::post('/logout', function (Request $request) {
         $request->user()->currentAccessToken()->delete();
         return response()->json(['message' => 'Logout berhasil']);
@@ -38,12 +42,15 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
 
-    // Public for both roles
-    Route::get('/user', fn(Request $request) => $request->user());
+    // =====================
+    // Routes untuk semua role (user & admin)
+    // =====================
     Route::apiResource('peminjaman', PeminjamanApiController::class)->only(['index', 'store', 'show']);
     Route::apiResource('berita', BeritaApiController::class)->only(['index', 'store', 'show']);
 
-    // Role admin only
+    // =====================
+    // Routes hanya untuk admin
+    // =====================
     Route::middleware('role.api:admin')->group(function () {
         Route::apiResource('lemari', LemariApiController::class);
         Route::apiResource('peminjaman', PeminjamanApiController::class)->only(['update', 'destroy']);
