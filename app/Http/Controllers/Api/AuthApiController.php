@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
-class AuthController extends Controller
+class AuthApiController extends Controller
 {
     // Login API - Generate Sanctum Token
     public function login(Request $request)
@@ -24,10 +24,11 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
-        $token = User::createToken('auth_token')->plainTextToken;
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'token' => $token,
+            'access_token' => $token,
+            'token_type' => 'Bearer',
             'user'  => $user
         ]);
     }
@@ -40,5 +41,11 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Logout berhasil'
         ]);
+    }
+
+    // Info user login
+    public function user(Request $request)
+    {
+        return response()->json($request->user());
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Lemari;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
 
 class LemariApiController extends Controller
 {

@@ -1,42 +1,26 @@
-import { getToken } from './auth.js';
+import { getToken } from './auth.js'; // file auth.js sama seperti sebelumnya
 
-const API_BASE = '/api/lemari';
+async function loadLemari() {
+    const token = getToken();
+    if (!token) {
+        alert('Token tidak ditemukan, silakan login ulang');
+        return;
+    }
 
-export async function getBuku() {
-    const res = await fetch(API_BASE, {
-        headers: { 'Authorization': `Bearer ${getToken()}` }
+    const res = await fetch('/api/lemari', {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/json'
+        }
     });
-    return await res.json();
+
+    if(res.ok){
+        const data = await res.json();
+        console.log('Data lemari:', data);
+        // render data di tabel / UI
+    } else {
+        console.log('Error fetching API', await res.json());
+    }
 }
 
-export async function addBuku(buku) {
-    const res = await fetch(API_BASE, {
-        method: 'POST',
-        headers: { 
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${getToken()}`
-        },
-        body: JSON.stringify(buku)
-    });
-    return await res.json();
-}
-
-export async function updateBuku(id, buku) {
-    const res = await fetch(`${API_BASE}/${id}`, {
-        method: 'PUT',
-        headers: { 
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${getToken()}`
-        },
-        body: JSON.stringify(buku)
-    });
-    return await res.json();
-}
-
-export async function deleteBuku(id) {
-    const res = await fetch(`${API_BASE}/${id}`, {
-        method: 'DELETE',
-        headers: { 'Authorization': `Bearer ${getToken()}` }
-    });
-    return await res.json();
-}
+loadLemari();
