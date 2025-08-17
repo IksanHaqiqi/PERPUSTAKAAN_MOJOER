@@ -85,9 +85,6 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        // Buat token API
-        $token = $user->createToken('web_token')->plainTextToken;
-        $request->session()->put('api_token', $token);
 
         return redirect()->route('crud.index');
     }

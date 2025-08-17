@@ -11,10 +11,19 @@
                     <div class="col-lg-6 p-5 ">
                         <h3 class="h4 font-weight-bold text-theme mb-4 ">Login</h3>
 
-                        <!-- Alert error dari AJAX -->
-                        <div id="alertError" class="alert alert-danger d-none"></div>
+                        <!-- Alert error -->
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
-                        <form id="loginForm">
+                        <!-- Form login biasa -->
+                        <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group">
                                 <label for="email">Email address</label>
@@ -45,45 +54,4 @@
         </div>
     </div>
 </div>
-
-<script type="module">
-import { setToken } from './auth.js';
-
-document.getElementById('loginForm').addEventListener('submit', async function(e){
-    e.preventDefault();
-
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const alertEl = document.getElementById('alertError');
-
-    alertEl.classList.add('d-none');
-    alertEl.textContent = '';
-
-    try {
-        const res = await fetch('{{ route("login") }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            credentials: 'same-origin',
-            body: JSON.stringify({ email, password })
-        });
-
-        // <-- LETAK KODE INI -->
-        if(res.ok){
-            const data = await res.json();
-            setToken(data.access_token); // simpan token
-            window.location.href = '/lemari'; // redirect ke dashboard
-        } else {
-            const data = await res.json().catch(()=>({ message: 'Login gagal' }));
-            alertEl.textContent = data.message || 'Login gagal';
-            alertEl.classList.remove('d-none');
-        }
-    } catch (err) {
-        alertEl.textContent = 'Terjadi kesalahan. Silakan coba lagi.';
-        alertEl.classList.remove('d-none');
-    }
-});
-</script>
 @endsection
