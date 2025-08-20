@@ -426,6 +426,8 @@
             }
         });
     </script>
+    
 @endpush
-
+<script src="{{ asset('js/lemari.js') }}"></script>
+    <script src="{{ asset('js/auth.js') }}"></script>
 @endsection

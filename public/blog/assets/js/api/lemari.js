@@ -1,33 +1,57 @@
-import { getToken } from './auth.js'; // pastiin token tersimpan pas login
+import { getToken, clearToken } from './auth.js';
 
-async function loadLemari() {
+export async function loadLemari() {
+    console.log('🔄 Loading lemari data...');
+    
     const token = getToken();
     if (!token) {
-        alert('Token tidak ditemukan, silakan login ulang');
+        console.error('❌ No token available');
+        alert('Anda harus login terlebih dahulu');
+        window.location.href = '/login';
         return;
     }
-
+    
+    console.log('🔑 Using token for API call');
+    
     try {
-        const res = await fetch("http://localhost:8000/api/lemari", {
-            method: "GET",
+        const response = await fetch('/api/lemari', { // Relative URL
+            method: 'GET',
             headers: {
-                "Accept": "application/json",
-                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + token
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+                'X-Requested-With': 'XMLHttpRequest'
             }
         });
-
-        if (res.ok) {
-            const data = await res.json();
-            console.log('Data lemari:', data);
-            // render data di tabel / UI
+        
+        console.log('📥 API Response status:', response.status);
+        
+        if (response.ok) {
+            const data = await response.json();
+            console.log('✅ Lemari data loaded:', data);
+            return data;
+            
+        } else if (response.status === 401) {
+            console.error('❌ Token expired or invalid');
+            clearToken();
+            alert('Session expired, please login again');
+            window.location.href = '/login';
+            
+        } else if (response.status === 403) {
+            console.error('❌ Access forbidden');
+            alert('You do not have permission to access this resource');
+            
         } else {
-            const err = await res.json();
-            console.error('Error fetching API:', err);
+            const errorData = await response.json().catch(() => ({ message: 'Unknown error' }));
+            console.error('❌ API Error:', errorData);
+            alert(`Error: ${errorData.message}`);
         }
-    } catch (e) {
-        console.error('Fetch error:', e);
+        
+    } catch (error) {
+        console.error('❌ Network error:', error);
+        alert('Network error: ' + error.message);
     }
 }
 
-loadLemari();
+// Auto-load when script runs (if needed)
+// loadLemari()

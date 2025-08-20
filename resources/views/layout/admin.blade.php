@@ -322,6 +322,10 @@
     <script src="{{ asset('Template-ui/assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('Template-ui/assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ asset('Template-ui/assets/js/plugins/chartjs.min.js') }}"></script>
+    <script src="{{ asset('js/lemari.js') }}"></script>
+    <script src="{{ asset('js/auth.js') }}"></script>
+    
+
     <script></script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;

@@ -5,47 +5,71 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class AuthApiController extends Controller
 {
-    // Login API - Generate Sanctum Token
-    public function login(Request $request)
+    public function register(Request $request)
     {
-        $request->validate([
-            'email'    => 'required|email',
-            'password' => 'required'
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6'],
         ]);
 
-        if (!Auth::attempt($request->only('email', 'password'))) {
-            return response()->json([
-                'message' => 'Email atau password salah'
-            ], 401);
-        }
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'role' => 'user', // default role
+        ]);
 
-        $user = Auth::user();
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = $user->createToken('api_token')->plainTextToken;
 
         return response()->json([
+            'status' => true,
+            'message' => 'Registrasi berhasil',
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'user'  => $user
-        ]);
+            'user' => $user
+        ], 201);
     }
 
-    // Logout API - Revoke Token
+    public function login(Request $request)
+    {
+        // PENTING: Cek apakah ini API request atau Web request
+        if ($request->wantsJson() || $request->is('api/*')) {
+            // Jangan handle API requests di web controller
+            return response()->json(['error' => 'Use API endpoint for API requests'], 400);
+        }
+
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/dashboard');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
+
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        // PENTING: Cek apakah ini API request atau Web request
+        if ($request->wantsJson() || $request->is('api/*')) {
+            return response()->json(['error' => 'Use API endpoint for logout'], 400);
+        }
 
-        return response()->json([
-            'message' => 'Logout berhasil'
-        ]);
-    }
-
-    // Info user login
-    public function user(Request $request)
-    {
-        return response()->json($request->user());
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/landing');
     }
 }
+
